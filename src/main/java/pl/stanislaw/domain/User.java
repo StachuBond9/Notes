@@ -1,11 +1,9 @@
 package pl.stanislaw.domain;
 
-import java.util.Scanner;
-
 public class User {
-    private String name;
-    private String login;
-    private String password;
+    private final String name;
+    private final String login;
+    private final String password;
 
     public User(String name, String login, String password) {
         this.name = name;

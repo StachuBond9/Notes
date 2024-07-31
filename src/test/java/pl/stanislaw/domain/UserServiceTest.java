@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 class UserServiceTest {
     @Test
-    void isUserRegistered() {
+    void isUserRegisteredTest() {
         //given
         String name ="Jan";
         String login ="jan12";
@@ -25,7 +25,7 @@ class UserServiceTest {
     }
 
     @Test
-    void isUserLogged() {
+    void isUserLoggedTest() {
         //given
         String name ="Jan";
         String login ="jan12";
