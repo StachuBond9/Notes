@@ -2,6 +2,7 @@ package pl.stanislaw;
 
 import pl.stanislaw.domain.User;
 import pl.stanislaw.domain.UserService;
+import pl.stanislaw.domain.UserServiceConsoleGUI;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,6 +10,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         UserService userService = new UserService();
+        UserServiceConsoleGUI service= new UserServiceConsoleGUI();
 
         do {
             System.out.println("1.Add user");
@@ -20,10 +22,15 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             switch (scanner.nextInt()){
                 case 1:
-                    userService.registration();
+
+                    userService.registration(service.nameReg(), service.loginReg(userService.registeredUsers()), service.passwordReg() );
                     break;
                 case 2:
-                    userService.login();
+                    if(userService.numberOfUsers()<=0){
+                        System.out.println("No registered users");
+                        userService.registration(service.nameReg(), service.loginReg(userService.registeredUsers()), service.passwordReg());
+                    }
+                    userService.login( service.login(), service.password());
                     break;
                 case 3:
                     System.out.println(userService.loggedUser());
