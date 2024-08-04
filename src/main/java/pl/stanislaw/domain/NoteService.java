@@ -16,7 +16,10 @@ public class NoteService {
     }
 
     public void editText(String id, String replaceText) {
-        getNote(id).setText(replaceText);
+        if(getNote(id) != null){
+            getNote(id).setText(replaceText);
+        }
+
     }
 
     public ArrayList<Note> savedNote(User user){
