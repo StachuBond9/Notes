@@ -3,8 +3,6 @@ package pl.stanislaw.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 class UserServiceTest {
     @Test
     void isUserRegistered() {
@@ -34,7 +32,7 @@ class UserServiceTest {
         userService.registration(name , login , password);
 
         //when
-        userService.login(login , password);
+        userService.login(login);
 
         //then
         Assertions.assertEquals( userService.loggedUser().getName() , name );

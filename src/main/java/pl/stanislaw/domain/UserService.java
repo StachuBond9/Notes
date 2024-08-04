@@ -1,7 +1,6 @@
 package pl.stanislaw.domain;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class UserService {
 
@@ -18,43 +17,25 @@ public class UserService {
 
     }
 
-    public void login(String login, String password) {
+
+    public String login(String login) {
         int indeks = 0;
-
-        for (int i = 10; i > 0; i--) {
-
-
-            boolean isLoginFound = false;
-            indeks = 0;
-            for (User t : users) {
-
-                if (t.getLogin().equals(login)) {
-                    isLoginFound = true;
-                }
-            }
-            if (isLoginFound) {
-                break;
-            }
-            System.out.println("Login not found\nYou have " + (i - 1) + " trials avaiable");
-            if (i - 1 == 0) {
-                return;
+        for (User t : users) {
+            if (t.getLogin().equals(login)) {
+                return Integer.toString(indeks);
             }
             indeks++;
         }
+        return null;
+    }
 
-        for (int i = 3; i > 0; i--) {
-
+    public boolean loginPassword(int indeks, String password){
             if (users.get(indeks).getPassword().equals(password)) {
                 activeUser = users.get(indeks);
-                System.out.println("Login corectly");
-                break;
+                return true;
             }
-            System.out.println("Wrong password");
-            System.out.println("You have only " + i + " trials avaiable");
-            if (i - 1 == 0) {
-                return;
-            }
-        }
+            return false;
+
     }
 
 

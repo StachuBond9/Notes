@@ -4,56 +4,67 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserServiceConsoleGUI {
+    UserValidator validator = new UserValidator();
+
+    public int menuChose(){
+        try{
+            Scanner scanner = new Scanner(System.in);
+            return scanner.nextInt();
+        }
+        catch (Exception e){
+            System.out.println("Wrong data, try again");
+            return 0;
+        }
+    }
 
     // Registration
-    public String nameReg() {
+    public String name() {
         System.out.println("Set name : ");
         Scanner name = new Scanner(System.in);
         return name.next();
     }
 
-    public String loginReg(ArrayList<User> users) {
-        while (true) {
-            System.out.println("Set login");
-            Scanner loginSc = new Scanner(System.in);
-            String login = loginSc.next();
-            int i = 0;
-            for (User t :  users) {
-                if (!t.getLogin().equals(login)) {
-                    i++;
-                }
-            }
-            if (i == users.size() && login.length() >= 5) {
-                return login;
-            }
-            System.out.println("Login is taken or too short");
-        }
-    }
-
-    public String passwordReg() {
-        while (true) {
-            System.out.println("Set password");
-            Scanner passwordSc = new Scanner(System.in);
-            String password = passwordSc.next();
-
-            if (password.length() > 5) {
-                return password;
-            }
-            System.out.println("Password is to short");
-        }
-    }
 
     //login
+    public String loginRe(ArrayList<User> users) {
+        while (true) {
+            String login = login();
+            if (validator.loginCorrect(login, users)) {
+                return login;
+            }
+            System.out.println("Login error");
+        }
+
+
+    }
+
+    // password
+    public String passwordRe() {
+        while (true) {
+
+            String password = password();
+            if (validator.passwordCorrect(password)) {
+                return password;
+            }
+            System.out.println("Password too short");
+        }
+
+    }
+
+
     public String login(){
-        System.out.println("Enter login");
-        Scanner loginSc = new Scanner(System.in);
-         return loginSc.next();
+        System.out.println("Enter login : ");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
     }
+
     public String password(){
-        System.out.println("Enter password");
-        Scanner passwordSc = new Scanner(System.in);
-        return passwordSc.next();
+        System.out.println("Enter password : ");
+        Scanner scanner = new Scanner(System.in);
+        return scanner.next();
     }
+
+
 
 
 }
