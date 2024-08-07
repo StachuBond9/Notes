@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class UserServiceConsoleGUI {
 
+    UserValidator userValidator = new UserValidator();
     // Registration
     public String nameReg() {
         System.out.println("Set name : ");
@@ -14,16 +15,9 @@ public class UserServiceConsoleGUI {
 
     public String loginReg(ArrayList<User> users) {
         while (true) {
-            System.out.println("Set login");
-            Scanner loginSc = new Scanner(System.in);
-            String login = loginSc.next();
-            int i = 0;
-            for (User t :  users) {
-                if (!t.getLogin().equals(login)) {
-                    i++;
-                }
-            }
-            if (i == users.size() && login.length() >= 5) {
+            String login = enterLogin();
+
+            if (userValidator.loginCorrect(login , users)) {
                 return login;
             }
             System.out.println("Login is taken or too short");
@@ -32,11 +26,9 @@ public class UserServiceConsoleGUI {
 
     public String passwordReg() {
         while (true) {
-            System.out.println("Set password");
-            Scanner passwordSc = new Scanner(System.in);
-            String password = passwordSc.next();
+            String password = enterPassword();
 
-            if (password.length() > 5) {
+            if (userValidator.passwordCorrect(password)) {
                 return password;
             }
             System.out.println("Password is to short");
