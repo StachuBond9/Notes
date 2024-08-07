@@ -44,16 +44,24 @@ public class UserServiceConsoleGUI {
     }
 
     //login
-    public String login(){
+    public String enterLogin(){
         System.out.println("Enter login");
         Scanner loginSc = new Scanner(System.in);
          return loginSc.next();
     }
-    public String password(){
+    public String enterPassword(){
         System.out.println("Enter password");
         Scanner passwordSc = new Scanner(System.in);
         return passwordSc.next();
     }
+
+    public int menuChose() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextInt();
+    }
+
+
+
 
 
 }

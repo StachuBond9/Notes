@@ -2,8 +2,6 @@ package pl.stanislaw;
 
 import pl.stanislaw.domain.*;
 
-import java.util.Scanner;
-
 public class Main {
 
     static UserService userService = new UserService();
@@ -23,26 +21,20 @@ public class Main {
                 exit = true;
                 return;
             case 2:
-                userService.registration(userGUI.name(), userGUI.loginRe(userService.registeredUsers()), userGUI.passwordRe());
+                userService.registration(userGUI.nameReg(), userGUI.loginReg(userService.registeredUsers()), userGUI.passwordReg());
                 break;
             case 3:
                 if (userService.numberOfUsers() <= 0) {
                     System.out.println("No registered users");
-                    userService.registration(userGUI.name(), userGUI.loginRe(userService.registeredUsers()), userGUI.passwordRe());
+                    userService.registration(userGUI.nameReg(), userGUI.loginReg(userService.registeredUsers()), userGUI.passwordReg());
                 }
-                for (int i = 0; i < 5; i++) {
-                    String indeksS = userService.login(userGUI.login());
-                    if (indeksS != null) {
-                        int indeks = Integer.parseInt(indeksS);
+                boolean loggedCorectly = false;
+                int i = 0;
+                do{
+                    loggedCorectly = userService.login(userGUI.enterLogin(), userGUI.enterPassword());
+                    i++;
 
-                        for (int j = 0; j < 3; j++) {
-                            if (userService.loginPassword(indeks, userGUI.password())) {
-                                return;
-                            }
-                        }
-                        return;
-                    }
-                }
+                }while(!loggedCorectly || i ==5);
 
                 break;
             case 4:

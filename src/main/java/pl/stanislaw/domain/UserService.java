@@ -18,43 +18,16 @@ public class UserService {
 
     }
 
-    public void login(String login, String password) {
-        int indeks = 0;
+    public boolean login(String login, String password) {
 
-        for (int i = 10; i > 0; i--) {
+        for (User t : users) {
 
-
-            boolean isLoginFound = false;
-            indeks = 0;
-            for (User t : users) {
-
-                if (t.getLogin().equals(login)) {
-                    isLoginFound = true;
-                }
-            }
-            if (isLoginFound) {
-                break;
-            }
-            System.out.println("Login not found\nYou have " + (i - 1) + " trials avaiable");
-            if (i - 1 == 0) {
-                return;
-            }
-            indeks++;
-        }
-
-        for (int i = 3; i > 0; i--) {
-
-            if (users.get(indeks).getPassword().equals(password)) {
-                activeUser = users.get(indeks);
-                System.out.println("Login corectly");
-                break;
-            }
-            System.out.println("Wrong password");
-            System.out.println("You have only " + i + " trials avaiable");
-            if (i - 1 == 0) {
-                return;
+            if (t.getLogin().equals(login) && t.getPassword().equals(password)) {
+                activeUser = t;
+                return true;
             }
         }
+        return false;
     }
 
 
