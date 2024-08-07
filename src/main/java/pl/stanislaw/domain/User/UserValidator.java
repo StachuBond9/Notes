@@ -1,4 +1,4 @@
-package pl.stanislaw.domain;
+package pl.stanislaw.domain.User;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ public class UserValidator {
     public  boolean loginCorrect(String login , ArrayList<User> users) {
         int i = 0;
         for (User t : users) {
-            if (!t.getLogin().equals(login)) {
+            if (!t.login().equals(login)) {
                 i++;
             }
         }
@@ -17,4 +17,5 @@ public class UserValidator {
         return password.length() > 5;
 
     }
+
 }

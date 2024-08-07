@@ -1,4 +1,6 @@
-package pl.stanislaw.domain;
+package pl.stanislaw.domain.Note;
+
+import pl.stanislaw.domain.User.User;
 
 public class Note {
     private String title;

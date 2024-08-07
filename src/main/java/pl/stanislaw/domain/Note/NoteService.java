@@ -1,4 +1,6 @@
-package pl.stanislaw.domain;
+package pl.stanislaw.domain.Note;
+
+import pl.stanislaw.domain.User.User;
 
 import java.util.ArrayList;
 import java.util.UUID;

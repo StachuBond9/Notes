@@ -2,10 +2,8 @@ package pl.stanislaw.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
+import pl.stanislaw.domain.Note.NoteService;
+import pl.stanislaw.domain.User.User;
 
 class NoteServiceTest {
 

@@ -2,8 +2,7 @@ package pl.stanislaw.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
+import pl.stanislaw.domain.User.UserService;
 
 class UserServiceTest {
     @Test
@@ -19,9 +18,9 @@ class UserServiceTest {
         userService.registration(name , login , password);
 
         //then
-        Assertions.assertEquals(userService.registeredUsers().getFirst().getLogin(), login);
-        Assertions.assertEquals(userService.registeredUsers().getFirst().getName(), name);
-        Assertions.assertEquals(userService.registeredUsers().getFirst().getPassword(), password);
+        Assertions.assertEquals(userService.registeredUsers().getFirst().login(), login);
+        Assertions.assertEquals(userService.registeredUsers().getFirst().name(), name);
+        Assertions.assertEquals(userService.registeredUsers().getFirst().password(), password);
     }
 
     @Test
@@ -37,9 +36,9 @@ class UserServiceTest {
         userService.login(login , password);
 
         //then
-        Assertions.assertEquals( userService.loggedUser().getName() , name );
-        Assertions.assertEquals( userService.loggedUser().getLogin() , login );
-        Assertions.assertEquals( userService.loggedUser().getPassword() , password );
+        Assertions.assertEquals( userService.loggedUser().name() , name );
+        Assertions.assertEquals( userService.loggedUser().login() , login );
+        Assertions.assertEquals( userService.loggedUser().password() , password );
     }
 
 }

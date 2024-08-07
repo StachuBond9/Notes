@@ -1,4 +1,4 @@
-package pl.stanislaw.domain;
+package pl.stanislaw.domain.Note;
 
 import java.util.Scanner;
 

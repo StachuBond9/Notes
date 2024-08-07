@@ -1,4 +1,4 @@
-package pl.stanislaw.domain;
+package pl.stanislaw.domain.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;

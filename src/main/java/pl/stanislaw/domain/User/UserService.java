@@ -1,28 +1,31 @@
-package pl.stanislaw.domain;
+package pl.stanislaw.domain.User;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class UserService {
 
+    private final UserRepository userRepository;
     private User activeUser = null;
-    private final ArrayList<User> users = new ArrayList<>();
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public int numberOfUsers() {
-        return users.size();
+        return userRepository.users().size();
     }
 
     public void registration(String name, String login, String password) {
         User user = new User(name, login, password);
-        users.add(user);
+        userRepository.addUser(user);
 
     }
 
     public boolean login(String login, String password) {
 
-        for (User t : users) {
+        for (User t : userRepository.users()) {
 
-            if (t.getLogin().equals(login) && t.getPassword().equals(password)) {
+            if (t.login().equals(login) && t.password().equals(password)) {
                 activeUser = t;
                 return true;
             }
@@ -36,7 +39,7 @@ public class UserService {
     }
 
     public ArrayList<User> registeredUsers() {
-        return users;
+        return userRepository.users();
     }
 
     public void logout() {

@@ -1,10 +1,14 @@
 package pl.stanislaw;
 
-import pl.stanislaw.domain.*;
+import pl.stanislaw.domain.Note.NoteService;
+import pl.stanislaw.domain.Note.NoteServiceConsoleGUI;
+import pl.stanislaw.domain.User.UserRepositoryInFile;
+import pl.stanislaw.domain.User.UserService;
+import pl.stanislaw.domain.User.UserServiceConsoleGUI;
 
 public class Main {
 
-    static UserService userService = new UserService();
+    static UserService userService = new UserService(new UserRepositoryInFile());
     static UserServiceConsoleGUI userGUI = new UserServiceConsoleGUI();
     static NoteService noteService = new NoteService();
     static NoteServiceConsoleGUI noteGUI = new NoteServiceConsoleGUI();
