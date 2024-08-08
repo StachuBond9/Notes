@@ -1,5 +1,6 @@
 package pl.stanislaw;
 
+import pl.stanislaw.domain.Note.NoteRepositoryInFile;
 import pl.stanislaw.domain.Note.NoteService;
 import pl.stanislaw.domain.Note.NoteServiceConsoleGUI;
 import pl.stanislaw.domain.User.UserRepositoryInFile;
@@ -10,7 +11,7 @@ public class Main {
 
     static UserService userService = new UserService(new UserRepositoryInFile());
     static UserServiceConsoleGUI userGUI = new UserServiceConsoleGUI();
-    static NoteService noteService = new NoteService();
+    static NoteService noteService = new NoteService(new NoteRepositoryInFile());
     static NoteServiceConsoleGUI noteGUI = new NoteServiceConsoleGUI();
     static boolean exit = false;
 

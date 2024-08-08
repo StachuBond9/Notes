@@ -18,7 +18,6 @@ public class UserRepositoryInFile implements UserRepository {
             users = objectMapper.readValue(new File("users.json"), new TypeReference<ArrayList<User>>() {
             });
         } catch (IOException e) {
-            e.printStackTrace();
         }
         return users;
     }
@@ -31,7 +30,6 @@ public class UserRepositoryInFile implements UserRepository {
         try {
             objectMapper.writeValue(new File("users.json"),users );
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

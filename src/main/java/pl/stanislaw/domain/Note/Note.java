@@ -2,37 +2,8 @@ package pl.stanislaw.domain.Note;
 
 import pl.stanislaw.domain.User.User;
 
-public class Note {
-    private String title;
-    private String text;
-    private final String id;
-    private final User user;
 
-    public Note(String title, String id , User user) {
-        this.title = title;
-        this.id = id;
-        this.user = user;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text){
-        this.text = text;
-    }
+public record Note(String title, String text, String id , User user ) {
 
     @Override
     public String toString() {
