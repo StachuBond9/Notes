@@ -5,7 +5,7 @@ import pl.stanislaw.domain.User.User;
 import java.util.ArrayList;
 
 public class NoteRepositoryInMemory implements NoteRepository {
-    private ArrayList<Note> notes = new ArrayList<>();
+    private final ArrayList<Note> notes = new ArrayList<>();
 
     @Override
     public void addNote(Note note) {
@@ -18,9 +18,9 @@ public class NoteRepositoryInMemory implements NoteRepository {
     }
 
     @Override
-    public void editText(String replaceText, Note id) {
-        Note newNote = new Note(id.title(), replaceText, id.id(), id.user());
-        notes.remove(id);
+    public void editText(String replaceText, Note note) {
+        Note newNote = new Note(note.title(), replaceText, note.id(), note.user());
+        notes.remove(note);
         notes.add(newNote);
     }
 
