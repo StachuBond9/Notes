@@ -12,11 +12,11 @@ public class NoteServiceConsoleGUI {
     public String enterTitle(){
         System.out.println("Enter title");
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        return scanner.next();
     }
     public String enterId(){
         System.out.println("Enter ID");
         Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        return scanner.next();
     }
 }
