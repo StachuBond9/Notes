@@ -2,12 +2,16 @@ package pl.stanislaw.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pl.stanislaw.domain.Note.NoteRepository;
+import pl.stanislaw.domain.Note.NoteRepositoryInMemory;
 import pl.stanislaw.domain.Note.NoteService;
 import pl.stanislaw.domain.User.User;
+import pl.stanislaw.domain.User.UserRepository;
 
 class NoteServiceTest {
 
-    NoteService noteService = new NoteService();
+    NoteRepository noteRepository = new NoteRepositoryInMemory();
+    NoteService noteService = new NoteService(noteRepository);
     @Test
     void isNoteCreatedTest() {
         //Given
@@ -17,7 +21,7 @@ class NoteServiceTest {
         noteService.createNote(title, user);
 
         //then
-        Assertions.assertEquals(noteService.savedNote(user).get(0).getTitle() , title);
+        Assertions.assertEquals(noteService.savedNote(user).getFirst().title(), title);
     }
 
     @Test
@@ -28,7 +32,7 @@ class NoteServiceTest {
         noteService.createNote(title, user);
 
         //when
-        noteService.delete(noteService.savedNote(user).getFirst().getId());
+        noteService.delete(noteService.savedNote(user).getFirst());
 
         //then
         Assertions.assertTrue(noteService.savedNote(user).isEmpty());
@@ -43,10 +47,10 @@ class NoteServiceTest {
         String text = "aaaaaaa";
 
         //when
-        noteService.editText(noteService.savedNote(user).getFirst().getId(), text );
+        noteService.editText(noteService.savedNote(user).getFirst(), text );
 
         //then
-        Assertions.assertEquals(noteService.savedNote(user).getFirst().getText() , text);
+        Assertions.assertEquals(noteService.savedNote(user).getFirst().text() , text);
     }
 
     @Test
@@ -55,6 +59,6 @@ class NoteServiceTest {
         User user = new User("jan",  "jan123", "jan123");
         noteService.createNote(title, user);
 
-        Assertions.assertEquals(noteService.savedNote(user).getFirst().getTitle(), title);
+        Assertions.assertEquals(noteService.savedNote(user).getFirst().title(), title);
     }
 }

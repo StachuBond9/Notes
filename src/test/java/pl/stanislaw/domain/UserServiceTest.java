@@ -2,16 +2,21 @@ package pl.stanislaw.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pl.stanislaw.domain.User.UserRepository;
+import pl.stanislaw.domain.User.UserRespiratoryInMemory;
 import pl.stanislaw.domain.User.UserService;
 
 class UserServiceTest {
+
+    UserRepository userRepository = new UserRespiratoryInMemory();
+    UserService userService = new UserService(userRepository);
     @Test
     void isUserRegisteredTest() {
         //given
         String name ="Jan";
         String login ="jan12";
         String password = "jan123";
-        UserService userService = new UserService();
+
 
 
         //when
@@ -29,7 +34,6 @@ class UserServiceTest {
         String name ="Jan";
         String login ="jan12";
         String password = "jan123";
-        UserService userService = new UserService();
         userService.registration(name , login , password);
 
         //when
