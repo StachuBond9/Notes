@@ -15,9 +15,9 @@ public class UserService {
         return userRepository.users().size();
     }
 
-    public void registration(String name, String login, String password) {
-        User user = new User(name, login, password);
-        userRepository.addUser(user);
+    public User registration( String name, String login, String password) {
+        User user = new User(null, name, login, password);
+        return userRepository.addUser(user);
 
     }
 

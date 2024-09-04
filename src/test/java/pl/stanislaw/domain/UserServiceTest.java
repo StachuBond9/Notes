@@ -1,15 +1,20 @@
 package pl.stanislaw.domain;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.stanislaw.domain.User.UserRepository;
-import pl.stanislaw.domain.User.UserRespiratoryInMemory;
-import pl.stanislaw.domain.User.UserService;
+import pl.stanislaw.domain.User.*;
 
 class UserServiceTest {
 
-    UserRepository userRepository = new UserRespiratoryInMemory();
+    UserRepository userRepository = new UserRepositorySQL();
     UserService userService = new UserService(userRepository);
+
+    @BeforeEach
+    void setUp() {
+        userRepository.deleteAll();
+    }
+
     @Test
     void isUserRegisteredTest() {
         //given
@@ -31,6 +36,7 @@ class UserServiceTest {
     @Test
     void isUserLoggedTest() {
         //given
+
         String name ="Jan";
         String login ="jan12";
         String password = "jan123";

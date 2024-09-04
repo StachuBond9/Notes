@@ -6,13 +6,13 @@ public class NoteServiceConsoleGUI {
     public String enterText(){
         System.out.println("Enter text :");
         Scanner text = new Scanner(System.in);
-        return text.next();
+        return text.nextLine();
     }
 
     public String enterTitle(){
         System.out.println("Enter title");
         Scanner scanner = new Scanner(System.in);
-        return scanner.next();
+        return scanner.nextLine();
     }
     public String enterId(){
         System.out.println("Enter ID");

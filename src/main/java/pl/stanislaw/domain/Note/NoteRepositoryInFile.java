@@ -19,6 +19,7 @@ public class NoteRepositoryInFile implements NoteRepository {
         try {
             objectMapper.writeValue(new File("notes.json"), notes);
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -29,6 +30,7 @@ public class NoteRepositoryInFile implements NoteRepository {
             notes = objectMapper.readValue(new File("notes.json"), new TypeReference<ArrayList<Note>>() {
             });
         } catch (IOException e) {
+            e.printStackTrace();
             return notes;
         }
         return notes;
@@ -38,24 +40,34 @@ public class NoteRepositoryInFile implements NoteRepository {
     public void removeNote(Note note) {
         ArrayList<Note> notes = noteList();
         notes.remove(note);
-
         try {
             objectMapper.writeValue(new File("notes.json"), notes);
         } catch (IOException e) {
-
+            e.printStackTrace();
         }
     }
 
     @Override
     public void editText(String replaceText, Note note) {
         ArrayList<Note> notes = noteList();
-        Note newNote = new Note(note.title() , replaceText ,note.id(), note.user());
+        Note newNote = new Note(note.title(), replaceText, note.id(), note.user());
         notes.remove(note);
         notes.add(newNote);
 
         try {
             objectMapper.writeValue(new File("notes.json"), notes);
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteAll() {
+
+        try {
+            objectMapper.writeValue(new File("notes.json"), "[]");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

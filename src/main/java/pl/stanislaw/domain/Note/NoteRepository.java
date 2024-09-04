@@ -10,4 +10,6 @@ public interface NoteRepository {
     void removeNote(Note note);
 
     void editText(String replaceText, Note id);
+
+    void deleteAll();
 }

@@ -1,22 +1,16 @@
 package pl.stanislaw;
 
-import pl.stanislaw.domain.Note.Note;
-import pl.stanislaw.domain.Note.NoteRepositoryInFile;
-import pl.stanislaw.domain.Note.NoteService;
-import pl.stanislaw.domain.Note.NoteServiceConsoleGUI;
-import pl.stanislaw.domain.User.User;
-import pl.stanislaw.domain.User.UserRepositoryInFile;
-import pl.stanislaw.domain.User.UserService;
-import pl.stanislaw.domain.User.UserServiceConsoleGUI;
+import pl.stanislaw.domain.Note.*;
+import pl.stanislaw.domain.User.*;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
-    static UserService userService = new UserService(new UserRepositoryInFile());
+    static UserService userService = new UserService(new UserRepositorySQL());
     static UserServiceConsoleGUI userGUI = new UserServiceConsoleGUI();
-    static NoteService noteService = new NoteService(new NoteRepositoryInFile());
+    static NoteService noteService = new NoteService(new NoteRepositorySQL());
     static NoteServiceConsoleGUI noteGUI = new NoteServiceConsoleGUI();
     static boolean exit = false;
 
@@ -39,18 +33,22 @@ public class Main {
                 break;
             case 2:
                 sameNameNote = noteService.getNotesByTitle(noteGUI.enterTitle(), userService.loggedUser());
+                break;
             default:
                 System.out.println("Wrong option");
                 return null;
         }
-        int i =1 ;
-        for (Note note : sameNameNote){
-            System.out.println(i + note.toString());
-            i++;
+        int i = 1;
+        if (sameNameNote.size() > 0) {
+            for (Note note : sameNameNote) {
+                System.out.println(i + note.toString());
+                i++;
+            }
+            System.out.println("Which note do you want chose ? ");
+            Scanner note = new Scanner(System.in);
+            return sameNameNote.get(note.nextInt() - 1);
         }
-        System.out.println("Which note do you want chose ? ");
-        Scanner note = new Scanner(System.in);
-        return sameNameNote.get(note.nextInt() - 1);
+        return null;
     }
 
     static void menuWhenNotLoggedIn() {

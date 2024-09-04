@@ -25,6 +25,11 @@ public class NoteRepositoryInMemory implements NoteRepository {
     }
 
     @Override
+    public void deleteAll() {
+        notes.clear();
+    }
+
+    @Override
     public ArrayList<Note> noteList() {
         return notes;
     }

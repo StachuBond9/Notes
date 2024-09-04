@@ -10,10 +10,15 @@ import java.util.UUID;
 public class NoteService {
 
     private final NoteRepository noteRepository;
+    public NoteService(NoteRepository noteRepository) {
+        this.noteRepository = noteRepository;
+    }
+
 
     public List<Note> getNotesByTitle(String title, User user){
         return noteRepository.noteList().stream()
-                .filter(note -> note.title().equals(title) && note.user().equals(user))
+                .filter(note -> note.user().equals(user))
+                .filter(note -> note.title().toLowerCase().contains(title.toLowerCase()))
                 .toList();
     }
     public List<Note> sortNotesByTitle(User user){
@@ -24,20 +29,17 @@ public class NoteService {
     }
     public List<Note> getNotesByContainedText(String content, User user){
         return noteRepository.noteList().stream()
-                .filter(note -> note.text().equals(content))
+                .filter(note -> note.user().equals(user))
+                .filter(note -> note.text().toLowerCase().contains(content.toLowerCase()))
                 .toList();
     }
 
     public List<String> mapNotesToText(User user){
         return noteRepository.noteList().stream()
+                .filter(note -> note.user().equals(user))
                 .map(Note::toString)
                 .toList();
     }
-
-    public NoteService(NoteRepository noteRepository) {
-        this.noteRepository = noteRepository;
-    }
-
 
     public void createNote(String title, User user) {
         Note note = new Note(title, "", UUID.randomUUID().toString(), user);
