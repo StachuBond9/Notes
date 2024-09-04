@@ -18,18 +18,30 @@ public class UserRepositoryInFile implements UserRepository {
             users = objectMapper.readValue(new File("users.json"), new TypeReference<ArrayList<User>>() {
             });
         } catch (IOException e) {
+            e.printStackTrace();
         }
         return users;
     }
 
     @Override
-    public void addUser(User user)  {
+    public User addUser(User user)  {
         ArrayList<User > users = users();
         users.add(user);
 
         try {
             objectMapper.writeValue(new File("users.json"),users );
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public void deleteAll() {
+        try {
+            objectMapper.writeValue(new File("users.json"),"[]" );
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

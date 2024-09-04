@@ -1,6 +1,6 @@
 package pl.stanislaw.domain.User;
 
-public record User(String name, String login, String password) {
+public record User( Integer id, String name, String login, String password) {
 
 
     @Override

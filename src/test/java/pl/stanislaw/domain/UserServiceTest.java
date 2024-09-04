@@ -1,17 +1,27 @@
 package pl.stanislaw.domain;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.stanislaw.domain.User.UserService;
+import pl.stanislaw.domain.User.*;
 
 class UserServiceTest {
+
+    UserRepository userRepository = new UserRepositorySQL();
+    UserService userService = new UserService(userRepository);
+
+    @BeforeEach
+    void setUp() {
+        userRepository.deleteAll();
+    }
+
     @Test
     void isUserRegisteredTest() {
         //given
         String name ="Jan";
         String login ="jan12";
         String password = "jan123";
-        UserService userService = new UserService();
+
 
 
         //when
@@ -26,10 +36,10 @@ class UserServiceTest {
     @Test
     void isUserLoggedTest() {
         //given
+
         String name ="Jan";
         String login ="jan12";
         String password = "jan123";
-        UserService userService = new UserService();
         userService.registration(name , login , password);
 
         //when

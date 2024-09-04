@@ -2,7 +2,7 @@ package pl.stanislaw.domain.User;
 
 import java.util.ArrayList;
 
-public class UserRespiratoryInMemory implements UserRepository {
+public class UserRepositoryInMemory implements UserRepository {
 
     private final ArrayList<User> users = new ArrayList<>();
 
@@ -12,7 +12,13 @@ public class UserRespiratoryInMemory implements UserRepository {
     }
 
     @Override
-    public void addUser(User user) {
+    public User addUser(User user) {
         users.add(user);
+        return user;
+    }
+
+    @Override
+    public void deleteAll() {
+        users.clear();
     }
 }
